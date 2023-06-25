@@ -1,0 +1,26 @@
+services:
+  first:
+    build:
+      context: .
+      dockerfile: ./apps/first/Dockerfile
+      target: development
+    command: npm run start:dev first
+    env_file:
+      - ./apps/first/.env
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/usr/src/app
+  second:
+    build:
+      context: .
+      dockerfile: ./apps/second/Dockerfile
+      target: development
+    command: npm run start:dev second
+    env_file:
+      - ./apps/second/.env
+    ports:
+      - '3001:3001'
+      - '3002:3002'
+    volumes:
+      - .:/usr/src/app
